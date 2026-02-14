@@ -16,6 +16,15 @@
 		<link rel="stylesheet" href="./css/style.css" />
 	</head>
 	<body>
+		<!-- Trang chào mừng -->
+		<div class="welcome-screen" id="welcomeScreen">
+			<div class="year-transition">
+				<div class="year old-year">2025</div>
+				<div class="year new-year">2026</div>
+			</div>
+			<button class="start-btn" id="startBtn">Bắt đầu</button>
+		</div>
+
 		<!-- partial:index.partial.html -->
 		<!-- SVG Spritesheet -->
 		<div style="height: 0; width: 0; position: absolute; visibility: hidden">
@@ -47,11 +56,20 @@
 			<div class="loading-init__status">Đang chuẩn bị pháo hoa</div>
 			</div>
 			<div class="stage-container remove">
+				<!-- Ảnh nền -->
+				<div class="background-image"></div>
+				<!-- Lời chúc -->
+				<div class="greeting-text" id="greetingText"></div>
 				<div class="canvas-container">
 					<canvas id="trails-canvas"> </canvas>
 					<canvas id="main-canvas"> </canvas>
 				</div>
 				<div class="controls">
+					<div class="btn music-btn" id="musicBtn">
+						<svg fill="white" width="24" height="24">
+							<use href="#icon-sound-on" xlink:href="#icon-sound-on"></use>
+						</svg>
+					</div>
 					<div class="btn pause-btn">
 						<svg fill="white" width="24" height="24">
 							<use href="#icon-pause" xlink:href="#icon-pause"></use>
@@ -149,5 +167,6 @@
 		<script src="./js/Stage.js"></script>
 		<script src="./js/MyMath.js"></script>
 		<script src="./js/script.js"></script>
+		<script src="./js/tet-features.js"></script>
 	</body>
 </html>

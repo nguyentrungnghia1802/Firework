@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Năm Mới 2026</title>
+    <link href="./fonts/css.css" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+            font-family: "Russo One", arial, sans-serif;
+        }
+
+        .celebration-container {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .main-text {
+            font-size: 8rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 
+                0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 30px #ff00de,
+                0 0 40px #ff00de,
+                0 0 50px #ff00de,
+                0 0 60px #ff00de,
+                0 0 70px #ff00de;
+            animation: glow 2s ease-in-out infinite alternate, float 3s ease-in-out infinite;
+            margin-bottom: 30px;
+        }
+
+        .sub-text {
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+            animation: fadeIn 2s ease-in-out, float 3s ease-in-out infinite;
+            animation-delay: 0.5s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .year {
+            font-size: 4rem;
+            color: #ffd700;
+            text-shadow: 
+                0 0 10px #ffd700,
+                0 0 20px #ffd700,
+                0 0 30px #ffd700;
+            animation: pulse 1.5s ease-in-out infinite;
+            margin-top: 20px;
+        }
+
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 3s linear infinite;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 
+                    0 0 10px #fff,
+                    0 0 20px #fff,
+                    0 0 30px #ff00de,
+                    0 0 40px #ff00de,
+                    0 0 50px #ff00de;
+            }
+            to {
+                text-shadow: 
+                    0 0 20px #fff,
+                    0 0 30px #ff00de,
+                    0 0 40px #ff00de,
+                    0 0 50px #ff00de,
+                    0 0 60px #ff00de,
+                    0 0 70px #ff00de,
+                    0 0 80px #ff00de;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-text {
+                font-size: 4rem;
+            }
+            .sub-text {
+                font-size: 1.5rem;
+            }
+            .year {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-text {
+                font-size: 2.5rem;
+            }
+            .sub-text {
+                font-size: 1rem;
+            }
+            .year {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sparkles" id="sparkles"></div>
+    <div class="celebration-container">
+        <h1 class="main-text">CHÚC MỪNG NĂM MỚI</h1>
+        <p class="sub-text">An Khang Thịnh Vượng</p>
+        <div class="year">2026</div>
+    </div>
+
+    <script>
+        // Tạo hiệu ứng tia sáng
+        const sparklesContainer = document.getElementById('sparkles');
+        for (let i = 0; i < 100; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 3 + 's';
+            sparkle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            sparklesContainer.appendChild(sparkle);
+        }
+    </script>
+</body>
+</html>

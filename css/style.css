@@ -359,3 +359,224 @@ body {
 	transition-timing-function: ease-out;
 	transition-duration: 0.4s;
 }
+
+/* Trang chào mừng */
+.welcome-screen {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999;
+	transition: opacity 1s ease-out;
+}
+
+.welcome-screen.fade-out {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.year-transition {
+	margin-bottom: 60px;
+}
+
+.year {
+	font-size: 12rem;
+	font-weight: bold;
+	color: #fff;
+	text-shadow: 
+		0 0 20px #fff,
+		0 0 40px #fff,
+		0 0 60px #ffd700,
+		0 0 80px #ffd700;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.old-year {
+	animation: fadeOutYear 3s ease-in-out forwards;
+}
+
+.new-year {
+	opacity: 0;
+	animation: fadeInYear 3s ease-in-out 3s forwards, glow 2s ease-in-out 6s infinite alternate;
+}
+
+.start-btn {
+	padding: 20px 60px;
+	font-size: 1.8rem;
+	font-family: "Russo One", arial, sans-serif;
+	background: linear-gradient(45deg, #ff00de, #ffd700);
+	color: #fff;
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+	box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+	transition: transform 0.3s, box-shadow 0.3s;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	opacity: 0;
+	animation: fadeInBtn 1s ease-in-out 6.5s forwards;
+}
+
+.start-btn:hover {
+	transform: scale(1.1);
+	box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+}
+
+@keyframes fadeOutYear {
+	0% {
+		opacity: 1;
+		transform: translateX(-50%) scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: translateX(-50%) scale(0.5);
+	}
+}
+
+@keyframes fadeInYear {
+	0% {
+		opacity: 0;
+		transform: translateX(-50%) scale(1.5);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(-50%) scale(1);
+	}
+}
+
+@keyframes glow {
+	from {
+		text-shadow: 
+			0 0 20px #fff,
+			0 0 40px #ffd700,
+			0 0 60px #ffd700;
+	}
+	to {
+		text-shadow: 
+			0 0 30px #fff,
+			0 0 60px #ffd700,
+			0 0 90px #ffd700,
+			0 0 120px #ffd700;
+	}
+}
+
+@keyframes fadeInBtn {
+	to {
+		opacity: 1;
+	}
+}
+
+/* Ảnh nền */
+.background-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=1920');
+	background-size: cover;
+	background-position: center;
+	opacity: 0.15;
+	z-index: 1;
+	pointer-events: none;
+}
+
+/* Lời chúc */
+.greeting-text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 3rem;
+	color: #fff;
+	text-shadow: 
+		0 0 10px #000,
+		0 0 20px #000,
+		0 0 30px #ffd700;
+	text-align: center;
+	z-index: 100;
+	opacity: 0;
+	transition: opacity 1s ease-in-out;
+	pointer-events: none;
+	padding: 0 20px;
+	font-weight: bold;
+}
+
+.greeting-text.show {
+	opacity: 1;
+}
+
+/* Nút nhạc nền */
+.music-btn {
+	position: relative;
+}
+
+.music-btn::before {
+	content: '♫';
+	position: absolute;
+	top: -5px;
+	right: -5px;
+	font-size: 12px;
+	color: #ffd700;
+	animation: musicNote 2s ease-in-out infinite;
+}
+
+@keyframes musicNote {
+	0%, 100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+	50% {
+		transform: translateY(-10px);
+		opacity: 0.5;
+	}
+}
+
+/* Ẩn nút cài đặt mặc định */
+.settings-btn {
+	display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.year {
+		font-size: 6rem;
+	}
+	
+	.start-btn {
+		padding: 15px 40px;
+		font-size: 1.3rem;
+	}
+	
+	.greeting-text {
+		font-size: 2rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.year {
+		font-size: 4rem;
+	}
+	
+	.start-btn {
+		padding: 12px 30px;
+		font-size: 1rem;
+	}
+	
+	.greeting-text {
+		font-size: 1.3rem;
+	}
+	
+	.canvas-container {
+		width: 100vw !important;
+		height: 100vh !important;
+	}
+}
