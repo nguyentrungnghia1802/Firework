@@ -29,15 +29,35 @@ Không được sử dụng cho mục đích thương mại khi chưa có sự �
 
     // Config ảnh nền động - Hiển thị lần lượt từ 1 đến 12
     const backgroundImages = [];
-    const imageExtensions = ['png', 'jpg', 'jpeg', 'webp', 'gif', 'avif']; // Các đuôi file hỗ trợ
+    const imageExtensions = ['jpg', 'webp', 'png', 'avif', 'jpeg', 'gif']; // Sắp xếp theo độ phổ biến
     let imagesLoaded = false;
 
     // Hàm kiểm tra file có tồn tại không
     async function checkImageExists(url) {
         return new Promise((resolve) => {
             const img = new Image();
-            img.onload = () => resolve(true);
-            img.onerror = () => resolve(false);
+            
+            const cleanup = () => {
+                img.onload = null;
+                img.onerror = null;
+            };
+            
+            img.onload = () => {
+                cleanup();
+                resolve(true);
+            };
+            
+            img.onerror = () => {
+                cleanup();
+                resolve(false);
+            };
+            
+            // Timeout sau 2 giây
+            setTimeout(() => {
+                cleanup();
+                resolve(false);
+            }, 2000);
+            
             img.src = url;
         });
     }
@@ -49,6 +69,7 @@ Không được sử dụng cho mục đích thương mại khi chưa có sự �
         const maxImages = 12; // Giới hạn 12 ảnh
         
         console.log('🔍 Tự động tìm ảnh nền (tối đa 12 ảnh)...');
+        console.log('ℹ️ Các 404 error dưới đây là bình thường trong quá trình tìm kiếm...');
         
         while (imageIndex <= maxImages) {
             let foundImage = false;
