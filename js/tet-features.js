@@ -30,27 +30,23 @@ Không được sử dụng cho mục đích thương mại khi chưa có sự �
     // Config ảnh nền động
     const backgroundImages = [
         {
-            url: 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=1920',
-            position: 'center' // left, right, center
-        },
-        {
-            url: 'https://images.unsplash.com/photo-1468818438311-4bab781ab9b8?w=1920',
+            url: './images/background/firework/1.png',
             position: 'center'
         },
         {
-            url: 'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=1920',
+            url: './images/background/firework/2.webp',
             position: 'left'
         },
         {
-            url: 'https://images.unsplash.com/photo-1518709268805-4e9042af2ac6?w=1920', 
+            url: './images/background/firework/3.webp',
             position: 'right'
         },
         {
-            url: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1920',
+            url: './images/background/firework/4.jpg', 
             position: 'center'
         },
         {
-            url: 'https://images.unsplash.com/photo-1517732306149-e8f829eb588a?w=1920',
+            url: './images/background/firework/5.jpg',
             position: 'left'
         }
     ];
