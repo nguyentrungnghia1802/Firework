@@ -25,7 +25,7 @@ Không được sử dụng cho mục đích thương mại khi chưa có sự �
     let fireworksStartTime = null;
     let currentGreetingIndex = 0; // Theo dõi câu chúc hiện tại
     let hasShownLixiMessage = false; // Đã hiển thị câu lì xì chưa
-    const FIREWORKS_DURATION = 95000; // 1 phút 35 giây (95000ms)
+    const FIREWORKS_DURATION = 106000; // 1 phút 46 giây (106000ms)
 
     // Khởi tạo nhạc nền
     function initBackgroundMusic() {
