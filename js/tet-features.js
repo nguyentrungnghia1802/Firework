@@ -29,7 +29,7 @@ Không được sử dụng cho mục đích thương mại khi chưa có sự �
 
     // Config ảnh nền động - Tự động nhận dạng
     const backgroundImages = [];
-    const imageExtensions = ['png', 'jpg', 'jpeg', 'webp', 'gif']; // Các đuôi file hỗ trợ
+    const imageExtensions = ['png', 'jpg', 'jpeg', 'webp', 'gif', 'avif']; // Các đuôi file hỗ trợ
     let imagesLoaded = false;
 
     // Hàm kiểm tra file có tồn tại không
