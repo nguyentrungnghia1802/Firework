@@ -27,7 +27,7 @@ Không được sử dụng cho mục đích thương mại khi chưa có sự �
     let hasShownLixiMessage = false; // Đã hiển thị câu lì xì chưa
     const FIREWORKS_DURATION = 106000; // 1 phút 46 giây (106000ms)
 
-    // Config ảnh nền động - Tự động nhận dạng
+    // Config ảnh nền động - Hiển thị lần lượt từ 1 đến 12
     const backgroundImages = [];
     const imageExtensions = ['png', 'jpg', 'jpeg', 'webp', 'gif', 'avif']; // Các đuôi file hỗ trợ
     let imagesLoaded = false;
@@ -42,14 +42,15 @@ Không được sử dụng cho mục đích thương mại khi chưa có sự �
         });
     }
 
-    // Tự động load danh sách ảnh từ 1 đến hết
+    // Tự động load danh sách ảnh từ 1 đến hết (tối đa 12 ảnh)
     async function loadBackgroundImages() {
         backgroundImages.length = 0; // Clear array
         let imageIndex = 1;
+        const maxImages = 12; // Giới hạn 12 ảnh
         
-        console.log('🔍 Tự động tìm ảnh nền...');
+        console.log('🔍 Tự động tìm ảnh nền (tối đa 12 ảnh)...');
         
-        while (true) {
+        while (imageIndex <= maxImages) {
             let foundImage = false;
             
             // Thử từng đuôi file cho số hiện tại
@@ -65,6 +66,7 @@ Không được sử dụng cho mục đích thương mại khi chưa có sự �
             }
             
             if (!foundImage) {
+                console.log(`⚠️ Không tìm thấy ảnh số ${imageIndex}, dừng tìm kiếm`);
                 break; // Không tìm thấy file nào với số này, dừng tìm kiếm
             }
             
@@ -175,27 +177,23 @@ Không được sử dụng cho mục đích thương mại khi chưa có sự �
         }
     }
 
-    // Thay đổi ảnh nền ngẫu nhiên
+    // Thay đổi ảnh nền theo thứ tự
     function changeBackgroundImage() {
         const backgroundDiv = document.querySelector('.background-image');
         if (!backgroundDiv || !imagesLoaded || backgroundImages.length === 0) return;
 
-        // Chọn một ảnh ngẫu nhiên (khác với ảnh hiện tại)
-        let newIndex;
-        do {
-            newIndex = Math.floor(Math.random() * backgroundImages.length);
-        } while (newIndex === currentImageIndex && backgroundImages.length > 1);
-        
-        currentImageIndex = newIndex;
         const selectedImageUrl = backgroundImages[currentImageIndex];
         
-        console.log(`🖼️ Đổi ảnh nền: ${selectedImageUrl}`);
+        console.log(`🖼️ Hiển thị ảnh ${currentImageIndex + 1}/${backgroundImages.length}: ${selectedImageUrl}`);
         
         // Đổi ảnh nền (luôn căn giữa)
         backgroundDiv.style.backgroundImage = `url('${selectedImageUrl}')`;
+
+        // Chuyển sang ảnh tiếp theo
+        currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
     }
 
-    // Bắt đầu chu trình thay đổi ảnh nền
+    // Bắt đầu chu trình thay đổi ảnh nền theo thứ tự
     async function startBackgroundImageCycle() {
         // Load danh sách ảnh trước
         const hasImages = await loadBackgroundImages();
@@ -205,13 +203,20 @@ Không được sử dụng cho mục đích thương mại khi chưa có sự �
             return;
         }
         
+        // Tính thời gian hiển thị: 106 giây / số ảnh
+        const displayTime = Math.floor(106000 / backgroundImages.length); // ms mỗi ảnh
+        console.log(`⏱️ Mỗi ảnh hiển thị ${displayTime}ms (${displayTime/1000}s)`);
+        
+        // Reset về ảnh đầu tiên
+        currentImageIndex = 0;
+        
         // Đổi ảnh ngay lập tức lần đầu
         changeBackgroundImage();
         
-        // Sau đó đổi mỗi 8-12 giây
+        // Sau đó đổi theo chu kỳ cố định
         imageChangeInterval = setInterval(() => {
             changeBackgroundImage();
-        }, Math.random() * 4000 + 8000); // 8-12 giây ngẫu nhiên
+        }, displayTime);
     }
 
     // Dừng chu trình thay đổi ảnh nền
